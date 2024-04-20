@@ -26,11 +26,12 @@ export class SenhasService {
   
   public guiche: number = 0;
   public imparPar: number = 0;
-  public indexSenhas: number = 0;
   public indexSenhasDoDia: number = 0;
   public indexPrior: number = 0;
   public indexGeral: number = 0;
   public indexExame: number = 0;
+
+
 
   constructor() { }
 
@@ -139,37 +140,41 @@ export class SenhasService {
     this.chamarProximaSenha();
   }
 
-
   ultimasSenhasChamadas(){
-    
+      for (let index = 0; index < 5; index++) {
+        this.arrayUltimasSenhasChamadas[index] = this.arraySenhasChamadasNoDia[this.arraySenhasChamadasNoDia.length-(1+index)];
+      }
   }
   chamarProximaSenha(){
 
-    if(this.qtdSenhasExame==0 && this.qtdSenhasGeral==0 && this.qtdSenhasPrior==0){
+    if(this.qtdSenhasExame==0 && this.qtdSenhasGeral==0 && this.qtdSenhasPrior==0){ //Se não tiver senha
       alert("Sem Senha para chamar");
     }
     //procurar se tem senha prioridade, depois se tem exame e depois geral
-    if (this.imparPar%2==0) { //Se for par
+    else if (this.imparPar%2==0) { //Se for par
       if(this.qtdSenhasPrior!=0 && this.indexPrior<this.qtdSenhasPrior){
-        this.arrayUltimasSenhasChamadas[this.indexSenhas] = this.senhaPrior[this.indexPrior];
+        // this.arrayUltimasSenhasChamadas[this.indexSenhas] = this.senhaPrior[this.indexPrior];
+        this.ultimasSenhasChamadas();
         this.arraySenhasChamadasNoDia[this.indexSenhasDoDia] = this.senhaPrior[this.indexPrior];
         this.ultimaSenhaChamada = this.senhaPrior[this.indexPrior];
-        this.indexSenhas++;
+        this.indexSenhasDoDia++;
         this.indexPrior++;
       }
     } else { //Se for impar
       if(this.qtdSenhasExame!=0 && this.indexExame<this.qtdSenhasExame){
-        this.arrayUltimasSenhasChamadas[this.indexSenhas] = this.senhaExame[this.indexExame];
+        // this.arrayUltimasSenhasChamadas[this.indexSenhas] = this.senhaExame[this.indexExame];
+        this.ultimasSenhasChamadas();
         this.arraySenhasChamadasNoDia[this.indexSenhasDoDia] = this.senhaExame[this.indexExame];
         this.ultimaSenhaChamada = this.senhaExame[this.indexExame];
-        this.indexSenhas++;
+        this.indexSenhasDoDia++;
         this.indexExame++;
       }
       else if (this.qtdSenhasGeral!=0 && this.indexGeral<this.qtdSenhasGeral) {
-        this.arrayUltimasSenhasChamadas[this.indexSenhas] = this.senhaGeral[this.indexGeral];
+        // this.arrayUltimasSenhasChamadas[this.indexSenhas] = this.senhaGeral[this.indexGeral];
+        this.ultimasSenhasChamadas();
         this.arraySenhasChamadasNoDia[this.indexSenhasDoDia] = this.senhaGeral[this.indexGeral];
         this.ultimaSenhaChamada = this.senhaGeral[this.indexGeral];
-        this.indexSenhas++;
+        this.indexSenhasDoDia++;
         this.indexGeral++;
       }
       else{
@@ -178,10 +183,28 @@ export class SenhasService {
     }
 
     //Não deixa mostrar mais do que as últimas 5;
-    if (this.indexSenhas>4){
-      this.indexSenhas = 0;
-    }
-
+    // if (this.indexSenhas>4){
+    //   this.indexSenhas = 0;
+      
+    // }
+    // if (this.indexSenhas<4){
+    //   var aux: string = '';
+    //   aux = this.arrayUltimasSenhasChamadas[0];
+    //   this.arrayUltimasSenhasChamadas[0] = this.ultimaSenhaChamada;
+    //   this.arrayUltimasSenhasChamadas
+      
+    // }
     this.imparPar=this.imparPar+1;
+    // console.log(this.arrayUltimasSenhasChamadas[0]);
+    // console.log(this.arrayUltimasSenhasChamadas[1]);
+    // console.log(this.arrayUltimasSenhasChamadas[2]);
+    // console.log(this.arrayUltimasSenhasChamadas[3]);
+    // console.log(this.arrayUltimasSenhasChamadas[4]);
   }
 }
+
+
+// 
+// for(var index=1; index<6; index++){
+// arraySenhasChamadas[arraySenhasChamadas.length-index]
+// }

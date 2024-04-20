@@ -8,6 +8,15 @@
 
 <ion-content [fullscreen]="true">
   <ion-card>
+    <ion-list>
+      <ion-label class="rotulo">Senha Chamada</ion-label>
+      <ion-item class="item">{{senhasService.ultimaSenhaChamada}}</ion-item>
+      <ion-label class="rotulo">Guiche</ion-label>
+      <ion-item class="item">{{senhasService.guiche}}</ion-item>
+    </ion-list>
+  </ion-card>
+
+  <ion-card>
     <ion-card-content>
       <ion-list>
         <ion-label>Últimas Senhas Chamadas</ion-label>
@@ -19,14 +28,4 @@
       </ion-list>
     </ion-card-content>
   </ion-card>
-
-  <ion-card>
-    <ion-list>
-      <ion-label class="rotulo">Senha Chamada</ion-label>
-      <ion-item class="item">{{senhasService.ultimaSenhaChamada}}</ion-item>
-      <ion-label class="rotulo">Guiche</ion-label>
-      <ion-item class="item">{{senhasService.guiche}}</ion-item>
-    </ion-list>
-  </ion-card>
-
 </ion-content>
