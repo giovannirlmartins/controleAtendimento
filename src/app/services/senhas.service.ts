@@ -9,6 +9,10 @@ export class SenhasService {
   public qtdSenhasPrior: number = 0;
   public qtdSenhasExame: number = 0;
   public qtdSenhasTotal: number = 0;
+  public qtdSenhasAtendidas:number = 0;
+  public qtdSenhasAtendidasPrior:number = 0;
+  public qtdSenhasAtendidasExam:number = 0;
+  public qtdSenhasAtendidasGeral:number = 0;
 
   public senhaGeral: Array<string> = [];
   public senhaPrior: Array<string> = [];
@@ -150,6 +154,7 @@ export class SenhasService {
   }
   chamarProximaSenha(){
 
+    this.qtdSenhasAtendidas ++;
     if(this.qtdSenhasExame==0 && this.qtdSenhasGeral==0 && this.qtdSenhasPrior==0){ //Se não tiver senha
       alert("Sem Senha para chamar");
     }
@@ -162,6 +167,7 @@ export class SenhasService {
         this.ultimaSenhaChamada = this.senhaPrior[this.indexPrior];
         this.indexSenhasDoDia++;
         this.indexPrior++;
+        this.qtdSenhasAtendidasPrior++;
       }
     } else { //Se for impar
       if(this.qtdSenhasExame!=0 && this.indexExame<this.qtdSenhasExame){
@@ -171,6 +177,7 @@ export class SenhasService {
         this.ultimaSenhaChamada = this.senhaExame[this.indexExame];
         this.indexSenhasDoDia++;
         this.indexExame++;
+        this.qtdSenhasAtendidasExam++;
       }
       else if (this.qtdSenhasGeral!=0 && this.indexGeral<this.qtdSenhasGeral) {
         // this.arrayUltimasSenhasChamadas[this.indexSenhas] = this.senhaGeral[this.indexGeral];
@@ -179,6 +186,7 @@ export class SenhasService {
         this.ultimaSenhaChamada = this.senhaGeral[this.indexGeral];
         this.indexSenhasDoDia++;
         this.indexGeral++;
+        this.qtdSenhasAtendidasGeral++
       }
       else{
         alert("Sem Senha para chamar");
