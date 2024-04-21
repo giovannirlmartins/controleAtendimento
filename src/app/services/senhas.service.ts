@@ -35,13 +35,19 @@ export class SenhasService {
   public indexGeral: number = 0;
   public indexExame: number = 0;
 
-  public relatorioGeral: Map<string, {tipoSenha: string, dataEmissao: string, horarioEmissao: number, horarioAtendimento?: number, guiche?: number}> = new Map();
+  public relatorioGeral: Map<string, {tipoSenha: string, dataEmissao: string, horarioEmissao: string, horarioAtendimento?: string, guiche?: number}> = new Map();
 
 
   constructor() {     
-    console.log(this.data.getHours()+':'+this.data.getMinutes());
+    console.log(this.data.getHours().toString()+':'+this.data.getMinutes());
   }
 
+  adicionarSenhaGerada(senha: string, tipoSenha: string, dataEmissao: string, horarioEmissao: string) {
+    this.relatorioGeral.set(senha, { tipoSenha, dataEmissao, horarioEmissao});
+  }
+  adicionarSenhaAtendida(senha: string, tipoSenha: string, dataEmissao: string, horarioEmissao: string, guiche: number) {
+    this.relatorioGeral.set(senha, { tipoSenha, dataEmissao, horarioEmissao, guiche });
+  }
 
   gerarSenhaGeral(){
     var mes: string = ''; //variaveis para preencher a senha 
