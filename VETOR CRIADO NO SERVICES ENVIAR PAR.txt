@@ -17,11 +17,11 @@ NOMEDOVETOR = [
 senha
 hor atend
 guiche
-numerodoarray
+numerodoarray (posição)
 
 
 senha
 hora aten
 guiche
-numerodoarray
+numerodoarray (posição)
 

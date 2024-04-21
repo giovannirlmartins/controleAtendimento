@@ -31,14 +31,17 @@ export class SenhasService {
   public indexGeral: number = 0;
   public indexExame: number = 0;
 
+  public relatorioGeral: Map<string, {tipoSenha: string, dataEmissao: string, horarioEmissao: number, horarioAtendimento?: number, guiche?: number}> = new Map();
 
 
-  constructor() { }
+  constructor() {     
+    console.log(this.data.getHours()+':'+this.data.getMinutes());
+  }
+
 
   gerarSenhaGeral(){
     var mes: string = ''; //variaveis para preencher a senha 
     var dia: string = '';
-    
     this.qtdSenhasGeral++; //incremento das variaveis
     this.qtdSenhasTotal++;
 
@@ -182,29 +185,8 @@ export class SenhasService {
       }
     }
 
-    //Não deixa mostrar mais do que as últimas 5;
-    // if (this.indexSenhas>4){
-    //   this.indexSenhas = 0;
-      
-    // }
-    // if (this.indexSenhas<4){
-    //   var aux: string = '';
-    //   aux = this.arrayUltimasSenhasChamadas[0];
-    //   this.arrayUltimasSenhasChamadas[0] = this.ultimaSenhaChamada;
-    //   this.arrayUltimasSenhasChamadas
-      
-    // }
     this.imparPar=this.imparPar+1;
-    // console.log(this.arrayUltimasSenhasChamadas[0]);
-    // console.log(this.arrayUltimasSenhasChamadas[1]);
-    // console.log(this.arrayUltimasSenhasChamadas[2]);
-    // console.log(this.arrayUltimasSenhasChamadas[3]);
-    // console.log(this.arrayUltimasSenhasChamadas[4]);
+    
+
   }
 }
-
-
-// 
-// for(var index=1; index<6; index++){
-// arraySenhasChamadas[arraySenhasChamadas.length-index]
-// }
